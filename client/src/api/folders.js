@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:10000/folders";
+const url = "https://code-snippet-saver-api.onrender.com/folders";
 
 export const createFolder = (newFolder) => axios.post(url, newFolder);
 export const fetchFolders = () => axios.get(url);

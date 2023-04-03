@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:10000/snippets";
+const url = "https://code-snippet-saver-api.onrender.com/snippets";
 
 export const createSnippet = (newSnippet) => axios.post(url, newSnippet);
 export const fetchSnippets = () => axios.get(url);
