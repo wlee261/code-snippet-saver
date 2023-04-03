@@ -1,33 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import "./App.css";
+import { useDispatch, useSelector } from "react-redux";
 
-import SnippetList from './components/SnippetList';
-import AddSnippet from './components/AddSnippet';
-import { getSnippets } from './actions/snippets'
-import { Container, Row, Col } from 'react-bootstrap';
+import { getSnippets } from "./actions/snippets";
+import { getFolders } from "./actions/folders";
+
+import { Box } from "@mui/material";
+
+import SnippetDrawer from "./components/SnippetDrawer/SnippetDrawer";
+import { NavigationDrawer } from "./components/NavigationDrawer/NavigationDrawer";
+import NewSnippetForm from "./components/NewSnippetForm/NewSnippetForm";
+import Snippet from "./components/Snippet/Snippet";
 
 const App = () => {
-    const dispatch = useDispatch();
-    const [currentID, setCurrentID] = useState(null);
-    const [snippetData, setSnippetData] = useState({ language: '', description: '', code: '', tags: '', folder: ''});
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getSnippets());
-    }, [currentID, dispatch]);
+  const shouldShowCreateNewSnippet = useSelector(
+    (state) => state.currDisplaying.showCreateNewSnippet
+  );
 
-    return(
-        <Container>
-            <Row>
-                <Col>
-                    <AddSnippet snippetData={snippetData} setSnippetData={setSnippetData}/>
-                </Col>
-            </Row>
-            <Row>
-                <SnippetList currentID={currentID} setCurrentID={setCurrentID} snippetData={snippetData} setSnippetData={setSnippetData}/>
-            </Row>
-            
-        </Container>
-    )
-}
+  const [currentID, setCurrentID] = useState(null);
+
+  useEffect(() => {
+    dispatch(getSnippets());
+    dispatch(getFolders());
+  }, [currentID, dispatch]);
+
+  return (
+    <Box sx={{ display: "flex", height: `100%` }}>
+      <NavigationDrawer />
+      <SnippetDrawer />
+      {shouldShowCreateNewSnippet ? <NewSnippetForm /> : <Snippet />}
+    </Box>
+  );
+};
 
 export default App;

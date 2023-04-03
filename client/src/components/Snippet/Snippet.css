@@ -1,0 +1,17 @@
+.snippet-container {
+    flex-grow: 1;
+}
+
+.snippet__code-block {
+    padding: 15px;
+}
+
+.welcome-message {
+    margin-top: 35vh;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

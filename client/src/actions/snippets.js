@@ -1,43 +1,52 @@
-import { CREATE, FETCH_ALL, UPDATE, DELETE } from '../constants/actionTypes';
+import { CREATE, FETCH_ALL, UPDATE, DELETE } from "../constants/actionTypes";
 
-import * as api from '../api';
+import * as api from "../api/snippets";
 
 export const createSnippet = (snippet) => async (dispatch) => {
-    try {
-        const { data } = await api.createSnippet(snippet);
+  try {
+    const { data } = await api.createSnippet(snippet);
 
-        dispatch({ type: CREATE, payload: data });
-    } catch (error) {
-        console.log(error);
-    }
+    dispatch({ type: CREATE, payload: data });
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getSnippets = () => async (dispatch) => {
-    try {
-        const { data } = await api.fetchSnippets();
+  try {
+    const { data } = await api.fetchSnippets();
 
-        dispatch({ type: FETCH_ALL, payload: data});
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+    dispatch({ type: FETCH_ALL, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const updateSnippet = (id, snippet) => async (dispatch) => {
-    try {
-        const { data } = await api.updateSnippet(id, snippet);
+  try {
+    const { data } = await api.updateSnippet(id, snippet);
 
-        dispatch({ type: UPDATE, payload: data})
-    } catch (error) {
-        console.log(error.message)
-    }
-}
+    dispatch({ type: UPDATE, payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
 
 export const deleteSnippet = (id) => async (dispatch) => {
-    try {
-        await api.deleteSnippet(id);
+  try {
+    await api.deleteSnippet(id);
 
-        dispatch({ type: DELETE, payload: id });
-    } catch (error) {
-        console.log(error.message);
-    }
-}
+    dispatch({ type: DELETE, payload: id });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+
+export const deleteFolderFromSnippets = (folderName) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteFolderFromSnippets(folderName);
+    dispatch({ type: "DELETEFOLDER", payload: data });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
