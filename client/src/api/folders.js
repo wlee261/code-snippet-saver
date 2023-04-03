@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = "http://localhost:5000/folders";
+const url = "http://localhost:10000/folders";
 
 export const createFolder = (newFolder) => axios.post(url, newFolder);
 export const fetchFolders = () => axios.get(url);
