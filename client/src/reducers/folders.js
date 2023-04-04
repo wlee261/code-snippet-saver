@@ -1,4 +1,4 @@
-import sortFolders from "../utils/sortFolders";
+import { sortFolders } from "../utils/sortFunctions";
 
 export default (folders = [], action) => {
   switch (action.type) {
