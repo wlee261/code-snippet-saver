@@ -20,16 +20,18 @@ const App = () => {
   );
 
   const [currentID, setCurrentID] = useState(null);
+  const [isFetchingData, setIsFetchingData] = useState(true);
 
   useEffect(() => {
     dispatch(getSnippets());
     dispatch(getFolders());
+    setIsFetchingData((prev) => false);
   }, [currentID, dispatch]);
 
   return (
     <Box sx={{ display: "flex", height: `100%` }}>
-      <NavigationDrawer />
-      <SnippetDrawer />
+      <NavigationDrawer isFetchingData={isFetchingData} />
+      <SnippetDrawer isFetchingData={isFetchingData} />
       {shouldShowCreateNewSnippet ? <NewSnippetForm /> : <Snippet />}
     </Box>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import "./SnippetDrawer.css";
@@ -14,6 +14,7 @@ import {
   ListItemButton,
   ListItemText,
   IconButton,
+  CircularProgress,
 } from "@mui/material";
 import FolderDeleteIcon from "@mui/icons-material/FolderDelete";
 
@@ -24,7 +25,10 @@ import {
 import { deleteFolder } from "../../actions/folders";
 import { deleteFolderFromSnippets } from "../../actions/snippets";
 
-const SnippetDrawer = () => {
+const SnippetDrawer = ({ isFetchingData }) => {
+  useEffect(() => {
+    console.log(isFetchingData);
+  }, [isFetchingData]);
   const [filterQuery, setFilterQuery] = useState("");
 
   const dispatch = useDispatch();
@@ -126,19 +130,27 @@ const SnippetDrawer = () => {
         </ListItem>
         <Divider />
 
-        {getSnippetsToDisplay().map((snippet) => {
-          return (
-            <ListItem key={snippet._id} disablePadding>
-              <ListItemButton
-                value={snippet._id}
-                onClick={() => dispatch(setSnippetToDisplay(snippet._id))}
-                selected={snippet._id === snippetToDisplayId}
-              >
-                <ListItemText primary={snippet.description} />
-              </ListItemButton>
-            </ListItem>
-          );
-        })}
+        {isFetchingData ? (
+          <ListItem
+            sx={{ display: "flex", justifyContent: "center", top: `7vh` }}
+          >
+            <CircularProgress />
+          </ListItem>
+        ) : (
+          getSnippetsToDisplay().map((snippet) => {
+            return (
+              <ListItem key={snippet._id} disablePadding>
+                <ListItemButton
+                  value={snippet._id}
+                  onClick={() => dispatch(setSnippetToDisplay(snippet._id))}
+                  selected={snippet._id === snippetToDisplayId}
+                >
+                  <ListItemText primary={snippet.description} />
+                </ListItemButton>
+              </ListItem>
+            );
+          })
+        )}
       </List>
     </Drawer>
   );

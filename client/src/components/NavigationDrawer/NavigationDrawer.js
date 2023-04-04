@@ -14,6 +14,7 @@ import {
   ListItemButton,
   TextField,
   Button,
+  CircularProgress,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
@@ -25,7 +26,7 @@ import {
   showCreateNewSnippet,
 } from "../../actions/currDisplaying";
 
-export const NavigationDrawer = () => {
+export const NavigationDrawer = ({ isFetchingData }) => {
   const folders = useSelector((state) => {
     return state.folders;
   });
@@ -140,20 +141,28 @@ export const NavigationDrawer = () => {
               </>
             )}
           </ListItem>
-          {folders.map((folder) => {
-            return (
-              <ListItem key={folder._id} disablePadding>
-                <ListItemButton
-                  selected={folderToDisplay.folderName === folder.folderName}
-                  onClick={() => {
-                    dispatch(setFolderToDisplay(folder));
-                  }}
-                >
-                  <ListItemText primary={folder.folderName} />
-                </ListItemButton>
-              </ListItem>
-            );
-          })}
+          {isFetchingData ? (
+            <ListItem
+              sx={{ display: "flex", justifyContent: "center", top: `7vh` }}
+            >
+              <CircularProgress />
+            </ListItem>
+          ) : (
+            folders.map((folder) => {
+              return (
+                <ListItem key={folder._id} disablePadding>
+                  <ListItemButton
+                    selected={folderToDisplay.folderName === folder.folderName}
+                    onClick={() => {
+                      dispatch(setFolderToDisplay(folder));
+                    }}
+                  >
+                    <ListItemText primary={folder.folderName} />
+                  </ListItemButton>
+                </ListItem>
+              );
+            })
+          )}
         </List>
       </Box>
     </Drawer>
