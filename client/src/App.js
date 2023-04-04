@@ -22,10 +22,14 @@ const App = () => {
   const [currentID, setCurrentID] = useState(null);
   const [isFetchingData, setIsFetchingData] = useState(true);
 
-  useEffect(() => {
-    dispatch(getSnippets());
-    dispatch(getFolders());
+  const fetchDataAsync = async () => {
+    await dispatch(getSnippets());
+    await dispatch(getFolders());
     setIsFetchingData((prev) => false);
+  };
+
+  useEffect(() => {
+    fetchDataAsync();
   }, [currentID, dispatch]);
 
   return (

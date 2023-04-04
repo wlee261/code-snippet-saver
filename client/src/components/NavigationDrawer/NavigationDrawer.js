@@ -12,7 +12,6 @@ import {
   Divider,
   IconButton,
   ListItemButton,
-  TextField,
   Button,
   CircularProgress,
 } from "@mui/material";
@@ -34,6 +33,10 @@ export const NavigationDrawer = ({ isFetchingData }) => {
   const folderToDisplay = useSelector(
     (state) => state.currDisplaying.folderName
   );
+
+  useEffect(() => {
+    console.log(isFetchingData);
+  }, [isFetchingData]);
 
   const hideDrawers = useSelector((state) => state.currDisplaying.hideDrawers);
 
