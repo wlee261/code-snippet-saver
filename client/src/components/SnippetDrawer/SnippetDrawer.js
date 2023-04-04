@@ -82,13 +82,13 @@ const SnippetDrawer = ({ isFetchingData }) => {
           left: 310,
           width: 310,
           position: "fixed",
-          "@media (max-width: 900px)": {
-            visibility: "hidden",
-            left: 0,
-            height: 0,
-            width: 0,
-            overflow: "hidden",
-          },
+          // "@media (max-width: 900px)": {
+          //   visibility: "hidden",
+          //   left: 0,
+          //   height: 0,
+          //   width: 0,
+          //   overflow: "hidden",
+          // },
         },
       }}
       anchor="left"

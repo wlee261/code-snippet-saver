@@ -81,12 +81,12 @@ export const NavigationDrawer = ({ isFetchingData }) => {
         sx: {
           width: 310,
           position: "fixed",
-          "@media (max-width: 900px)": {
-            visibility: hideDrawers ? "hidden" : "",
-            height: hideDrawers ? 0 : "",
-            width: hideDrawers ? 0 : "",
-            overflow: hideDrawers ? "hidden" : "",
-          },
+          // "@media (max-width: 900px)": {
+          //   visibility: hideDrawers ? "hidden" : "",
+          //   height: hideDrawers ? 0 : "",
+          //   width: hideDrawers ? 0 : "",
+          //   overflow: hideDrawers ? "hidden" : "",
+          // },
         },
       }}
       anchor="left"
