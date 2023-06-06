@@ -8,7 +8,7 @@ This is a fullstack web application built on the MERN stack that allows users to
 - Add a language badge to show what language each snippet was coded in
 - Global state managed by redux
 
-##Tech Stack
+## Tech Stack
 - React
 - Express
 - MongoDB
@@ -16,8 +16,7 @@ This is a fullstack web application built on the MERN stack that allows users to
 - Redux
 - MUI
 
-##
-Installation
+## Installation
 1. Clone the repository
 2. Install dependencies ```npm install```
 3. Create a .env in root of server folder, add your mongodb connection url
